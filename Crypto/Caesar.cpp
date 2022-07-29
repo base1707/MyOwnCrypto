@@ -8,28 +8,28 @@ namespace Caesar
     inline const std::wstring ALPHABET_EN = L"abcdefghijklmnopqrstuvwxyz";
     inline const std::wstring ALPHABET_RU = L"абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
     
-    inline const std::size_t ALPHABET_EN_SIZE = 26;
-    inline const std::size_t ALPHABET_RU_SIZE = 33;
+    constexpr std::size_t ALPHABET_EN_SIZE = 26;
+    constexpr std::size_t ALPHABET_RU_SIZE = 33;
     
     // char + value for lower, char - value for upper
-    inline constexpr uint32_t UPPER_VALUE = L'A' - L'a';
+    constexpr uint32_t UPPER_VALUE = L'A' - L'a';
     
-    inline bool IsUpper(const wchar_t& c)
+    inline bool IsUpper(wchar_t c)
     {
         return c >= L'A' && c <= L'Z' || c >= L'А' && c <= L'Я';
     }
     
-    inline wchar_t ToUpper(const wchar_t& c)
+    inline wchar_t ToUpper(wchar_t c)
     {
         return (c >= L'a' && c <= L'z' || c >= L'а' && c <= L'я') ? static_cast<wchar_t>(c - UPPER_VALUE) : c;
     }
     
-    inline wchar_t ToLower(const wchar_t& c)
+    inline wchar_t ToLower(wchar_t c)
     {
         return (c >= L'A' && c <= L'Z' || c >= L'А' && c <= L'Я') ? static_cast<wchar_t>(c + UPPER_VALUE) : c;
     }
     
-    std::wstring Encode(std::wstring input, std::size_t key)
+    inline std::wstring Encode(const std::wstring& input, std::size_t key)
     {
         if (input.empty())
             return {};
@@ -76,7 +76,7 @@ namespace Caesar
         return result;
     }
     
-    std::wstring Decode(std::wstring input, std::size_t key)
+    inline std::wstring Decode(const std::wstring& input, std::size_t key)
     {
         if (input.empty())
             return {};
@@ -130,7 +130,7 @@ namespace Caesar
     }
 }
 
-int main(int argc, char* argv[])
+int main(int, char* [])
 {
     // Use UTF-8 for both languages
     std::ios_base::sync_with_stdio(false);
